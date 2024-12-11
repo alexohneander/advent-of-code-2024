@@ -7,7 +7,7 @@ pub fn solve(){
     let content = file_helper::get_string_input_from_file("./input/day_one/input.txt");
 
     // Then parse it into an Vector
-    let (left_values, right_values) = parse_input_into_array(content);
+    let (left_values, right_values) = parse_input_into_splitted_vec(content);
     println!("Left Values Count: {:?}", left_values.len());
     println!("Right Values Count: {:?}", right_values.len());
 
@@ -28,14 +28,14 @@ pub fn solve_part_two(){
     let content = file_helper::get_string_input_from_file("./input/day_one/input.txt");
 
     // Then parse it into an Vector
-    let (left_values, right_values) = parse_input_into_array(content);
+    let (left_values, right_values) = parse_input_into_splitted_vec(content);
     
     let similarity_score = get_similarity_score(left_values, right_values);
 
     println!("Final Result: {}", similarity_score);
 }
 
-fn parse_input_into_array(content: String) -> (Vec<i32>, Vec<i32>) {
+fn parse_input_into_splitted_vec(content: String) -> (Vec<i32>, Vec<i32>) {
     if &content == "" {
         panic!("Content is Empty");
     } 
