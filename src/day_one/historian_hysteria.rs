@@ -21,6 +21,19 @@ pub fn solve(){
     println!("Finale Result: {}", final_value);
 }
 
+pub fn solve_part_two(){
+    println!("Solving Puzzle Day One -- Part Two"); 
+    
+    // First get the Values from the Input file
+    let content = get_input_from_file();
+
+    // Then parse it into an Vector
+    let (left_values, right_values) = parse_input_into_array(content);
+    
+    let similarity_score = get_similarity_score(left_values, right_values);
+
+    println!("Final Result: {}", similarity_score);
+}
 
 fn get_input_from_file() -> String {
     let file_path = "./input/day_one/input.txt";
@@ -107,4 +120,29 @@ fn get_distance_from_values(value_left: i32, value_right: i32) -> i32 {
     }
 
     return distance;
+}
+
+fn get_similarity_score(values_left: Vec<i32>, values_right: Vec<i32>) -> i32 {
+    let mut score: i32 = 0;
+    let mut similarity_values: Vec<i32> = vec![0; values_left.len()];
+
+    let mut counter = 0;
+    for value_left in values_left.iter() {
+        let mut similarity_counter = 0;
+        
+        for value_right in values_right.iter() {
+            if value_left == value_right {
+                similarity_counter+= 1
+            }
+        }
+
+        similarity_values[counter] = value_left * similarity_counter;
+        counter+=1
+    }
+
+   for value in similarity_values.iter() {
+        score += value;
+   } 
+
+    return score;
 }
