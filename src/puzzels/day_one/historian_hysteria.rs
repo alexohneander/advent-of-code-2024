@@ -1,10 +1,10 @@
-use std::fs;
+use crate::helpers::file_helper;
 
 pub fn solve(){
     println!("Solving Puzzle Day One");
 
     // First get the Values from the Input file
-    let content = get_input_from_file();
+    let content = file_helper::get_string_input_from_file("./input/day_one/input.txt");
 
     // Then parse it into an Vector
     let (left_values, right_values) = parse_input_into_array(content);
@@ -25,7 +25,7 @@ pub fn solve_part_two(){
     println!("Solving Puzzle Day One -- Part Two"); 
     
     // First get the Values from the Input file
-    let content = get_input_from_file();
+    let content = file_helper::get_string_input_from_file("./input/day_one/input.txt");
 
     // Then parse it into an Vector
     let (left_values, right_values) = parse_input_into_array(content);
@@ -33,15 +33,6 @@ pub fn solve_part_two(){
     let similarity_score = get_similarity_score(left_values, right_values);
 
     println!("Final Result: {}", similarity_score);
-}
-
-fn get_input_from_file() -> String {
-    let file_path = "./input/day_one/input.txt";
-
-    let contents = fs::read_to_string(file_path)
-        .expect("Should have been able to read the file");
-
-    return contents;
 }
 
 fn parse_input_into_array(content: String) -> (Vec<i32>, Vec<i32>) {
